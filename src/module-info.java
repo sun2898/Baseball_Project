@@ -5,5 +5,6 @@
  * @author sssoc
  *
  */
-module Project {
+module VicPie {
+	requires java.sql;
 }
