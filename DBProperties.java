@@ -1,4 +1,4 @@
-package VolleyBall;
+package project01;
 
 public class DBProperties {
 
