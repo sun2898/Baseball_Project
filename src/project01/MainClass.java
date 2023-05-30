@@ -1,22 +1,15 @@
 package project01;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainClass {
-	
+
 	public static void main(String[] args) {
-		
 		Scanner scan = new Scanner(System.in);
+		PlayersDAO players  = new PlayersDAO();
 		
-		TeamsDAO teamsDAO = new TeamsDAO();
-		
-		teamsDAO.getAllTeam();
-		
-		System.out.print("조회할 팀 명 > ");
-		String name = scan.nextLine();
-				
-		teamsDAO.getTeamInfo(name);
-		
-		
+		List<PlayersVO> list = players.getPlayers(180); 
+		System.out.println(list.toString());
 	}
 }
