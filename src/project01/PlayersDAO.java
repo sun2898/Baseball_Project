@@ -74,7 +74,7 @@ public class PlayersDAO {
 		
 		return list;
 	}
-<<<<<<< HEAD
+
 		
 	public String insertPlayers(PlayersVO vo) {
 		int result = 0;
@@ -214,8 +214,6 @@ public class PlayersDAO {
 		
 		return str;
 	}
-=======
 
->>>>>>> 3e96fc23c31f0aab30ba556911712ee5dbb66156
 	
 }
