@@ -1,6 +1,6 @@
 package project01;
 
-public class TeamVO {
+public class TeamsVO {
 
 	private String team_name;
 	private String owner;
@@ -9,9 +9,9 @@ public class TeamVO {
 	private String region;
 	private String sponser;
 	
-	public TeamVO() {	}
-
-	public TeamVO(String team_name, String owner, String director, String team_leader, String region, String sponser) {
+	public TeamsVO() {	}
+	
+	public TeamsVO(String team_name, String owner, String director, String team_leader, String region, String sponser) {
 		super();
 		this.team_name = team_name;
 		this.owner = owner;
