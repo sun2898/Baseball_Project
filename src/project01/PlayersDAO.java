@@ -23,10 +23,10 @@ public class PlayersDAO {
 		}		
 	}
 	
-	public List<PlayersVO> getPlayers(int height01){
+	public List<PlayersVO> getPlayers(String name){
 		List<PlayersVO> list = new ArrayList<>();
 		
-		String sql = "select * from players where height > ?";
+		String sql = "select * from players where team_name = ? ";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -35,7 +35,7 @@ public class PlayersDAO {
 		try {
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, height01);
+			pstmt.setString(1, name);
 			
 			rs = pstmt.executeQuery();
 			
@@ -72,12 +72,150 @@ public class PlayersDAO {
 			
 		}
 		
-		
-		
-		
-		
 		return list;
 	}
+<<<<<<< HEAD
+		
+	public String insertPlayers(PlayersVO vo) {
+		int result = 0;
+		String str = "";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "insert into players values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getP_code());
+			pstmt.setString(2, vo.getP_name());
+			pstmt.setString(3, vo.getP_position());
+			pstmt.setInt(4, vo.getHeight());
+			pstmt.setInt(5, vo.getScore());
+			pstmt.setInt(6, vo.getJoin_year());
+			pstmt.setDouble(7, vo.getServe());
+			pstmt.setDouble(8, vo.getBlocking());
+			pstmt.setDouble(9, vo.getReceive());
+			pstmt.setDouble(10, vo.getP_set());
+			pstmt.setString(11, vo.getTeam_name());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			
+		}
+		
+		if(result == 0) {
+			str = "오류, 다시 입력하세요";
+		} else if(result == 1) {
+			str = "등록되었습니다.";
+		}
+		
+		
+		return str;
+	}
+	
+	public String deletePlayers(PlayersVO vo) {
+		int result = 0;
+		String str = "";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from players where p_code = ?";
+		
+		try {
+			
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getP_code());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		if(result == 0) {
+			str = "오류, 다시 입력하세요";
+		} else if(result == 1) {
+			str = "삭제하였습니다.";
+		}
+		
+		
+		return str;
+	}
 
+	public String updatePlayers(PlayersVO vo) {
+		int result = 0;
+		String str = "";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "update players \r\n"
+				+ "set score = ?,\r\n"
+				+ "    serve = ?,\r\n"
+				+ "    blocking = ?,\r\n"
+				+ "    receive = ?,\r\n"
+				+ "    p_set = ?,\r\n"
+				+ "    team_name =?\r\n"
+				+ "where p_code = ?";
+		
+		try {
+			
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vo.getScore());
+			pstmt.setDouble(2, vo.getServe());
+			pstmt.setDouble(3, vo.getBlocking());
+			pstmt.setDouble(4, vo.getReceive());
+			pstmt.setDouble(5, vo.getP_set());
+			pstmt.setString(6, vo.getTeam_name());
+			pstmt.setInt(7, vo.getP_code());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				conn.close();
+				pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		if(result == 0) {
+			str = "오류, 다시 입력하세요";
+		} else if(result == 1) {
+			str = "업데이트 완료";
+		}
+		
+		return str;
+	}
+=======
+
+>>>>>>> 3e96fc23c31f0aab30ba556911712ee5dbb66156
 	
 }

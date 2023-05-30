@@ -15,7 +15,24 @@ public class PlayersVO {
 	private String team_name;
 	
 	public PlayersVO() {}
-
+	
+	public PlayersVO(int p_code) {
+		super();
+		this.p_code = p_code;
+	}
+	
+	public PlayersVO(int p_code, int score, double serve, double blocking, double receive,
+			 double p_set, String team_name ) {
+		super();
+		this.p_code = p_code;
+		this.score = score;
+		this.serve = serve;
+		this.blocking = blocking;
+		this.receive = receive;
+		this.p_set = p_set;
+		this.team_name = team_name;
+	}
+	
 	public PlayersVO(int p_code, String p_name, String p_position, int height, int score, int join_year, double serve,
 			double blocking, double receive, double p_set, String team_name) {
 		super();
