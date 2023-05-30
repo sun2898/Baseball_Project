@@ -78,6 +78,6 @@ public class PlayersDAO {
 		
 		return list;
 	}
-		
+
 	
 }
