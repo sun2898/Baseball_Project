@@ -31,7 +31,7 @@ public class StaffMain {
 				
 				if(staffMenu == 1) {
 					
-					List<StaffVO> list = staffDAO.getStaffs("흥국생명 핑크스파이더스");
+					List<StaffVO> list = staffDAO.getStaffs("핑크스파이더스");
 					for(StaffVO vo : list) {
 						System.out.println(vo.getTeam_name());
 						System.out.println(vo.getS_code());
@@ -39,8 +39,9 @@ public class StaffMain {
 						System.out.println(vo.getS_position());
 						System.out.println(vo.getTask());
 					}
+					//System.out.println(list.toString());
 					
-				} else if(staffMenu == 2) { //왜 널값이 들어갈까.... 고민!!
+				} else if(staffMenu == 2) { 
 					
 					System.out.print("팀명>");
 					String team_name = scan.next();

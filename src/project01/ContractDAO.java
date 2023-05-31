@@ -38,6 +38,7 @@ public class ContractDAO {
 			
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -48,9 +49,9 @@ public class ContractDAO {
 				String currTeam = rs.getString("currteam");
 				String newTeam = rs.getString("newTeam");
 				int down_payment = rs.getInt("down_payment");
-				String yn = rs.getString("yn");
+				String yes_no = rs.getString("yes_no");
 				
-				ContractVO vo = new ContractVO(p_code, p_name, p_position, salary, currTeam, newTeam, down_payment, yn);
+				ContractVO vo = new ContractVO(p_code, p_name, p_position, salary, currTeam, newTeam, down_payment, yes_no);
 				list.add(vo);
 			}
 			
@@ -71,32 +72,31 @@ public class ContractDAO {
 		return list;
 	}
 
-	public int insertContracts(ContractVO vo) {
+	public int updateContracts(ContractVO vo) {
 		
 		int result = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "INSERT INTO PLAYERS VALUES(PLAYERS_SEQ.NEXTVAL, P_NAME, P_POSITION, HEIGHT, SCORE, JOIN_YEAR, SERVE, BLOCKING, RECEIVE, P_SET, NEWTEAM)";
+		String sql = "MERGE INTO PLAYERS P\n"
+				+ "USING CONTRACTS C\n"
+				+ "ON (P.P_CODE = C.P_CODE)\n"
+				+ "WHEN MATCHED THEN\n"
+				+ "    UPDATE\n"
+				+ "    SET P.TEAM_NAME = (SELECT C.NEWTEAM\n"
+				+ "                     FROM CONTRACTS C\n"
+				+ "                     WHERE  C.P_NAME = P.P_NAME)";
 		
 		try {
 			
 			conn = DriverManager.getConnection(url, uid, upw);
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getP_name());
-			pstmt.setString(2, vo.getP_position());
-			pstmt.setInt(3, vo.getHeight());
-			pstmt.setInt(4, vo.getScore());
-			pstmt.setInt(5, vo.getJoin_year());
-			pstmt.setDouble(6, vo.getServe());
-			pstmt.setDouble(7, vo.getBlocking());
-			pstmt.setDouble(8, vo.getReceive());
-			pstmt.setDouble(9, vo.getP_set());
-			pstmt.setString(10, vo.getTeam_name());
 			
 			result = pstmt.executeUpdate();
+			System.out.println(result);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,57 +105,11 @@ public class ContractDAO {
 			try {
 				conn.close();
 				pstmt.close();
-				
-			} catch (Exception e2) {
-				
-			}
-			
-		}
-		
-		
-		return result;
-	}
-
-	public int deleteContracts(ContractVO vo) {
-		
-		int result = 0;
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		String sql = "DELETE FROM PLAYERS WHERE P_CODE = ?";
-		
-		try {
-			
-			conn = DriverManager.getConnection(url, uid, upw);
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getP_code());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			
-			try {
-				conn.close();
-				pstmt.close();
-				
 			} catch (Exception e2) {
 				
 			}
 			
 		}
 		return result;
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

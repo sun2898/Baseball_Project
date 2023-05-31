@@ -41,6 +41,7 @@ public class StaffDAO {
 			conn = DriverManager.getConnection(url, uid, upw);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, team_name);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -68,7 +69,7 @@ public class StaffDAO {
 				rs.close();
 				
 			} catch (Exception e2) {
-			
+				e2.printStackTrace();
 			}
 		}
 		return list;
@@ -183,6 +184,7 @@ public class StaffDAO {
 		
 		return result;
 	}
+	
 	
 	
 }

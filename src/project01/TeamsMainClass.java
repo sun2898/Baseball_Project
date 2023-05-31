@@ -10,6 +10,10 @@ public class TeamsMainClass {
 			
 			TeamsDAO teamsDAO = new TeamsDAO();
 			
+			PlayersDAO playersDAO = new PlayersDAO();
+			
+			playersDAO.getAllPlayers();
+			
 			while(true) {
 				
 				System.out.println("[1. 팀 목록, 2. 팀 상세정보, 3. 선발명단]");

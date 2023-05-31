@@ -14,18 +14,39 @@ public class ContractVO extends PlayersVO {
 	
 	public ContractVO() {}
 	
-	public ContractVO(int p_code, String p_name, String p_position, int salary, String currteam, String newtream,
+	public ContractVO(int p_code, String p_name, String p_position, int salary, String currTeam, String newTeam,
 			int down_payment, String yn) {
 		super();
 		this.p_code = p_code;
 		this.p_name = p_name;
 		this.p_position = p_position;
 		this.salary = salary;
-		this.currTeam = currteam;
-		this.newTeam = newtream;
+		this.currTeam = currTeam;
+		this.newTeam = newTeam;
 		this.down_payment = down_payment;
 		this.yn = yn;
 	}
+	
+	public ContractVO(int p_code) {
+		super();
+		this.p_code = p_code;
+	}
+	
+	public ContractVO(int p_code, String p_name, String p_position, int height, int score, int join_year, double serve, double blocking, double receive, double p_set, String newTeam) {
+		super();
+		this.p_code = p_code;
+		this.p_name = p_name;
+		this.p_position = p_position;
+		super.setHeight(height);
+		super.setScore(score);
+		super.setJoin_year(join_year);
+		super.setServe(serve);
+		super.setBlocking(blocking);
+		super.setReceive(receive);
+		super.setP_set(p_set);
+		this.newTeam = newTeam;
+	}
+	
 
 	public int getP_code() {
 		return p_code;
@@ -59,20 +80,20 @@ public class ContractVO extends PlayersVO {
 		this.salary = salary;
 	}
 
-	public String getCurrteam() {
+	public String getCurrTeam() {
 		return currTeam;
 	}
 
-	public void setCurrteam(String currteam) {
-		this.currTeam = currteam;
+	public void setCurrTeam(String currTeam) {
+		this.currTeam = currTeam;
 	}
 
-	public String getNewtream() {
+	public String getNewTeam() {
 		return newTeam;
 	}
 
-	public void setNewtream(String newtream) {
-		this.newTeam = newtream;
+	public void setNewtream(String newTeam) {
+		this.newTeam = newTeam;
 	}
 
 	public int getDown_payment() {
