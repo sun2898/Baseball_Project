@@ -19,7 +19,7 @@ public class StaffMain {
 			int menu = scan.nextInt();
 			
 			switch (menu) {
-			case 1:
+			case 1: System.out.println("준비중입니다.");
 					
 				break;
 			case 2:
@@ -38,6 +38,7 @@ public class StaffMain {
 						System.out.println(vo.getS_name());
 						System.out.println(vo.getS_position());
 						System.out.println(vo.getTask());
+						System.out.println("===================================");
 					}
 					//System.out.println(list.toString());
 					

@@ -463,6 +463,7 @@ public class TeamsDAO {
 	}
 
 	public void getEntry () {
+
 		
 		System.out.println("==선발명단=======================================================================================");
 		getMB();
@@ -472,5 +473,59 @@ public class TeamsDAO {
 		getL();
 		System.out.println("===============================================================================================");
 	}
+	
+public List<TeamsVO> getAllTeamInfo () {
+		
+		List<TeamsVO> list = new ArrayList<>();
+		
+		String sql = "SELECT * FROM TEAMS";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(url, uid, upw);
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			String team_name = rs.getString("team_name");
+			String owner = rs.getString("owner");
+			String director = rs.getString("director");
+			String team_leader = rs.getString("team_leader");
+			String region = rs.getString("region");
+			String sponser = rs.getString("sponser");
+			
+			TeamsVO vo = new TeamsVO(team_name, owner, director, team_leader, region, sponser);
+			list.add(vo);
+			
+			System.out.println("================================");
+			System.out.println("팀 : " + vo.getTeam_name());
+			System.out.println("구단주 : " + vo.getOwner());
+			System.out.println("감독 : " + vo.getDirector());
+			System.out.println("주장 : " + vo.getTeam_leader());
+			System.out.println("연고지 : " + vo.getRegion());
+			System.out.println("모기업 : " + vo.getSponser());
+			System.out.println("================================");
+			
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		
+		return list;
+	}
+
 }
 

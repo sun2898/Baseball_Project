@@ -1,61 +1,83 @@
 package project01;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
-public class MainPage extends JFrame {
+public class MainPage {
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainPage window = new MainPage();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the application.
-	 */
-	public MainPage() {
-		initialize();
-	}
+   private JFrame frame;
+ 
+   Image img = null;
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		setBounds(100, 100, 450, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 10, 412, 243);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JButton btn1 = new JButton("선수 정보");
-		btn1.setBounds(154, 77, 97, 23);
-		panel.add(btn1);
-		
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GUI2 g2 = new GUI2();
-				g2.setVisible(true);
-				dispose();
-				
-				
-			}
-		});
-		
-	}
+   /**
+    * Launch the application.
+    */
+   public static void main(String[] args) {
+      EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            try {
+            	MainPage window = new MainPage();
+               window.frame.setVisible(true);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
+
+   /**
+    * Create the application.
+    */
+   public MainPage() {
+      initialize();
+   }
+
+   /**
+    * Initialize the contents of the frame.
+    */
+   private void initialize() {
+      
+         
+      frame = new JFrame("배구선수 관리 프로그램 - VMP");
+      frame.setBackground(new Color(255, 255, 255));
+      frame.getContentPane().setFont(new Font("굴림", Font.BOLD, 12));
+      frame.setBounds(100, 100, 638, 448);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.getContentPane().setLayout(null);
+      
+      
+      JButton btnNewButton = new JButton("구단관리");
+      btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+      btnNewButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+        	 TeamsPage t1 = new TeamsPage();
+        	 
+         }
+      });
+      btnNewButton.setBounds(331, 43, 213, 67);
+      frame.getContentPane().add(btnNewButton);
+      
+      JButton btnNewButton_1 = new JButton("선수관리");
+      btnNewButton_1.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		playersPage g2 = new playersPage();
+      	}
+      });
+      btnNewButton_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+      
+      btnNewButton_1.setBounds(60, 43, 213, 67);
+      frame.getContentPane().add(btnNewButton_1);
+      
+   }
 }

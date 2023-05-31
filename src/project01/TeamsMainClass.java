@@ -23,7 +23,7 @@ public class TeamsMainClass {
 				
 				if(menu == 1) {
 					//부서명으로 조회
-					teamsDAO.getAllTeam();
+					teamsDAO.getAllTeamInfo();
 					
 				} else if(menu == 2) {
 					System.out.print("팀명을 입력하세요> ");
