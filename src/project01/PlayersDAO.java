@@ -56,6 +56,19 @@ public class PlayersDAO {
 				
 				list.add(vo);
 				
+				System.out.println("-----------------------------------------------------------------------------------------------------------------");
+				System.out.print("선수코드: " + vo.getP_code() + ", ");
+				System.out.print("선수이름: " + vo.getP_name() + ", ");
+				System.out.print("포지션: " + vo.getP_position() + ", ");
+				System.out.print("신장: " + vo.getHeight() + ", ");
+				System.out.print("득점: " + vo.getScore() + ", ");
+				System.out.print("가입연도: " + vo.getJoin_year() + ", ");
+				System.out.print("서브: " + vo.getServe() + ", ");
+				System.out.print("블로킹: " + vo.getBlocking() + ", ");
+				System.out.print("리시브: " + vo.getReceive() + ", ");
+				System.out.println("세트: " + vo.getP_set());
+				
+				
 			}
 			
 			

@@ -13,15 +13,15 @@ public class MainClass {
 		
 		
 		while(true) {
-			
+			System.out.println("-----------------------------------------------------------------------------------------------------------------");
 			System.out.println("[1.조회, 2.추가, 3.수정, 4.삭제]");
 			System.out.print("메뉴>");
 			int menu = scan.nextInt();
 			
 			if(menu == 1) {
 
-				List<PlayersVO> list = players.getPlayers("알토스"); 
-				System.out.println(list.toString());
+				List<PlayersVO> list = players.getPlayers("핑크스파이더스"); 
+				
 				
 			} else if(menu == 2) {
 						
